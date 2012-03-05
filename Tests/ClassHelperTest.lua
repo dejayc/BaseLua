@@ -7,5 +7,5 @@
 
      http://www.apache.org/licenses/LICENSE-2.0 --]]
 
-local BaseLua = require( "Packages.BaseLua" )
+local BaseLua = require( "Packages.BaseLua.BaseLua" )
 local ClassHelper = require( BaseLua.package.ClassHelper )

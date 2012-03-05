@@ -7,7 +7,7 @@
 
      http://www.apache.org/licenses/LICENSE-2.0 --]]
 
-local BaseLua = require( "Packages.BaseLua" )
+local BaseLua = require( "Packages.BaseLua.BaseLua" )
 local BaseConfig = require( BaseLua.package.BaseConfig )
 
 context( "BaseConfig", function()
