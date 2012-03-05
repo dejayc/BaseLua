@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <title>Luadocs for Packages//TableHelper.lua</title>
+    <link rel="stylesheet" href="../../../luadoc.css" type="text/css" />
+    <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/-->
+</head>
+
+<body>
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+<div id="main">
+
+<div id="navigation">
+
+
+<h1>LuaDoc</h1>
+<ul>
+	
+	<li><a href="../../../index.html">Index</a></li>
+	
+</ul>
+
+
+<!-- Module list -->
+
+<h1>Modules</h1>
+<ul>
+
+	<li>
+		<a href="../../../modules/BaseConfig.html">BaseConfig</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/BaseLua.html">BaseLua</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/ClassHelper.html">ClassHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/DataHelper.html">DataHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/FileHelper.html">FileHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/FunctionHelper.html">FunctionHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/MathHelper.html">MathHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/StringHelper.html">StringHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/TableHelper.html">TableHelper</a>
+	</li>
+
+</ul>
+
+
+
+<!-- File list -->
+
+<h1>Files</h1>
+<ul>
+
+	<li>
+		<a href="../../../files/Packages//BaseClass.html">Packages//BaseClass.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//BaseConfig.html">Packages//BaseConfig.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//BaseLua.html">Packages//BaseLua.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//ClassHelper.html">Packages//ClassHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//DataHelper.html">Packages//DataHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//FileHelper.html">Packages//FileHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//FunctionHelper.html">Packages//FunctionHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//MathHelper.html">Packages//MathHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//StringHelper.html">Packages//StringHelper.lua</a>
+	</li>
+
+	<li><strong>Packages//TableHelper.lua</strong></li>
+	
+</ul>
+
+
+
+
+
+
+</div> <!-- id="navigation" -->
+
+<div id="content">
+
+<h1>File <code>Packages//TableHelper.lua</code></h1>
+
+
+<p>Convenience functions for performing table manipulation.</p>
+
+
+
+
+
+
+<h2>Functions</h2>
+<table class="function_list">
+
+    <tr>
+    <td class="name" nowrap><a href="#copy">copy</a>&nbsp;(sourceTable, copyTables, copyMetatables)</td>
+    <td class="summary">Returns a shallow or deep copy of the specified table.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#getNumericKeysSorted">getNumericKeysSorted</a>&nbsp;(target)</td>
+    <td class="summary">Returns a new table consisting of the sorted numeric key values of the specified table.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#isNonEmptyTable">isNonEmptyTable</a>&nbsp;(target)</td>
+    <td class="summary">Indicates whether the specified parameter is a table that contains at least one element.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#pack">pack</a>&nbsp;(...)</td>
+    <td class="summary">Returns a table that contains all of the passed parameters.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#selectByNestedIndex">selectByNestedIndex</a>&nbsp;(target, ...)</td>
+    <td class="summary">Returns the specified named element of the specified table, traversing nested table elements as necessary.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#updateByNestedIndex">updateByNestedIndex</a>&nbsp;(value, target, ...)</td>
+    <td class="summary">Updates the specified named element of the specified table to the specified value and returns it, traversing and creating nested table elements as necessary.</td>
+    </tr>
+
+</table>
+
+
+
+
+
+
+<br/>
+<br/>
+
+
+
+
+<h2><a name="functions"></a>Functions</h2>
+<dl class="function">
+
+
+
+<dt><a name="copy"></a><strong>copy</strong>&nbsp;(sourceTable, copyTables, copyMetatables)</dt>
+<dd>
+Returns a shallow or deep copy of the specified table.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  sourceTable: The table to copy.
+	</li>
+	
+	<li>
+	  copyTables: False if the specified table and its resulting copy should share references to child elements that are also tables; True if child tables should be copied recursively.  Defaults to false.
+	</li>
+	
+	<li>
+	  copyMetatables: False if the specified table and its child table elements should share metatables with the resulting copies of the tables; True if metatables should be copied recursively.  Defaults to false.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage</h3>
+<ul>
+	
+	<li>table2 = copy( table1 )
+	
+	<li>table2 = copy( table1, true )
+	
+	<li>table2 = copy( table1, true, true )
+	
+	<li>table2 = copy( nil ) -- nil
+	
+	<li>table2 = copy( "non-table" ) -- "non-table"
+	
+</ul>
+
+
+
+<h3>Return value:</h3>
+A copy of the specified table.
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="">
+		http://lua-users.org/wiki/CopyTable
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="getNumericKeysSorted"></a><strong>getNumericKeysSorted</strong>&nbsp;(target)</dt>
+<dd>
+Returns a new table consisting of the sorted numeric key values of the specified table.  Useful for iterating through a mixed table that contains associative array entries in addition to traditional numeric array entries.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  target: The target table to search for numeric key values.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage</h3>
+<ul>
+	
+	<li>getNumericKeysSorted( { [ 4 ] = "a", [ 1 ] = "b", hi = "bye", [ 2 ] = "c" } ) -- { 1, 2, 4 }
+	
+	<li>getNumericKeysSorted( nil ) -- nil
+	
+	<li>for index, value in ipairs( getNumericKeysSorted ( mixedTable ) ) do
+	
+</ul>
+
+
+
+<h3>Return value:</h3>
+The sorted numeric key values of the specified table.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="isNonEmptyTable"></a><strong>isNonEmptyTable</strong>&nbsp;(target)</dt>
+<dd>
+Indicates whether the specified parameter is a table that contains at least one element.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  target: The target parameter to evaluate.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage</h3>
+<ul>
+	
+	<li>isNonEmptyTable( nil ) -- false
+	
+	<li>isNonEmptyTable( "Hi" ) -- false
+	
+	<li>isNonEmptyTable( { } ) -- false
+	
+	<li>isNonEmptyTable( { "" } ) -- true
+	
+</ul>
+
+
+
+<h3>Return value:</h3>
+True if the specified parameter is a table that contains at least one element; otherwise, false.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="pack"></a><strong>pack</strong>&nbsp;(...)</dt>
+<dd>
+Returns a table that contains all of the passed parameters.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  ...: A list of optional parameters with which to populate the returned table.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage</h3>
+<ul>
+	
+	<li>pack ( 1, 2, 3 ) -- { 1, 2, 3 }
+	
+	<li>pack ( 1, nil, 2, 3 ) -- { 1, nil, 2, 3 }
+	
+</ul>
+
+
+
+<h3>Return value:</h3>
+A table that contains all of the passed parameters.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="selectByNestedIndex"></a><strong>selectByNestedIndex</strong>&nbsp;(target, ...)</dt>
+<dd>
+Returns the specified named element of the specified table, traversing nested table elements as necessary.  If the specified table is nil, or lacks the specified named element, returns nil.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  target: The target table to search for the specified named element.
+	</li>
+	
+	<li>
+	  ...: A list of element names, with each name representing a step deeper into the hierarchy of nested table elements.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage</h3>
+<ul>
+	
+	<li>selectByNestedIndex( { hi = { bye = 9 } }, "hi", "bye" ) -- 9
+	
+	<li>selectByNestedIndex( { hi = { bye = 9 } }, "hi" ) -- { bye = 9 }
+	
+	<li>selectByNestedIndex( { hi = { bye = 9 } }, "hi", "there" ) -- nil
+	
+	<li>selectByNestedIndex( nil, "hi", "bye" ) -- nil
+	
+</ul>
+
+
+
+<h3>Return value:</h3>
+The specified named element of the specified table, if available; otherwise, nil.
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../../../files/Packages//TableHelper.html#updateByNestedIndex">
+		updateByNestedIndex
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="updateByNestedIndex"></a><strong>updateByNestedIndex</strong>&nbsp;(value, target, ...)</dt>
+<dd>
+Updates the specified named element of the specified table to the specified value and returns it, traversing and creating nested table elements as necessary.  If the specified table is nil, returns nil.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  value: The value to which to set the specified named element in the specified table.
+	</li>
+	
+	<li>
+	  target: The target table to search for the specified named element.
+	</li>
+	
+	<li>
+	  ...: A list of element names, with each name representing a step deeper into the hierarchy of nested table elements.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage</h3>
+<ul>
+	
+	<li>updateByNestedIndex( 9, { hi = { bye = 0 } }, "hi", "bye" ) -- { bye = 9 }
+	
+	<li>updateByNestedIndex( 9, { hi = { } }, "hi", "bye" ) -- { hi = { bye = 9 } }
+	
+	<li>updateByNestedIndex( { bye = 9}, { hi = { } }, "hi" ) -- { hi = { bye = 9 } }
+	
+	<li>updateByNestedIndex( 9, { hi = { } } ) --  { hi = { } }
+	
+	<li>updateByNestedIndex( 9, nil, "hi", "bye" ) -- nil
+	
+</ul>
+
+
+
+<h3>Return value:</h3>
+The specified named element of the specified table, if the table is not nil; otherwise, nil.
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../../../files/Packages//TableHelper.html#selectByNestedIndex">
+		selectByNestedIndex
+	</a>
+	
+</ul>
+
+</dd>
+
+
+</dl>
+
+
+
+
+
+
+
+</div> <!-- id="content" -->
+
+</div> <!-- id="main" -->
+
+<div id="about">
+    <p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" /></a></p>
+</div> <!-- id="about" -->
+
+</div> <!-- id="container" -->
+</body>
+</html>

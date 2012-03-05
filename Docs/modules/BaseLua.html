@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <title>BaseLua: Module Index</title>
+    <link rel="stylesheet" href="../luadoc.css" type="text/css" />
+    <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/-->
+</head>
+
+<body>
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+<div id="main">
+
+<div id="navigation">
+
+
+<h1>LuaDoc</h1>
+<ul>
+	
+	<li><a href="../index.html">Index</a></li>
+	
+</ul>
+
+
+<!-- Module list -->
+
+<h1>Modules</h1>
+<ul>
+
+	<li>
+		<a href="../modules/BaseConfig.html">BaseConfig</a>
+	</li>
+
+	<li><strong>BaseLua</strong></li>
+	
+	<li>
+		<a href="../modules/ClassHelper.html">ClassHelper</a>
+	</li>
+
+	<li>
+		<a href="../modules/DataHelper.html">DataHelper</a>
+	</li>
+
+	<li>
+		<a href="../modules/FileHelper.html">FileHelper</a>
+	</li>
+
+	<li>
+		<a href="../modules/FunctionHelper.html">FunctionHelper</a>
+	</li>
+
+	<li>
+		<a href="../modules/MathHelper.html">MathHelper</a>
+	</li>
+
+	<li>
+		<a href="../modules/StringHelper.html">StringHelper</a>
+	</li>
+
+	<li>
+		<a href="../modules/TableHelper.html">TableHelper</a>
+	</li>
+
+</ul>
+
+
+
+<!-- File list -->
+
+<h1>Files</h1>
+<ul>
+
+	<li>
+		<a href="../files/Packages//BaseClass.html">Packages//BaseClass.lua</a>
+	</li>
+
+	<li>
+		<a href="../files/Packages//BaseConfig.html">Packages//BaseConfig.lua</a>
+	</li>
+
+	<li>
+		<a href="../files/Packages//BaseLua.html">Packages//BaseLua.lua</a>
+	</li>
+
+	<li>
+		<a href="../files/Packages//ClassHelper.html">Packages//ClassHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../files/Packages//DataHelper.html">Packages//DataHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../files/Packages//FileHelper.html">Packages//FileHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../files/Packages//FunctionHelper.html">Packages//FunctionHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../files/Packages//MathHelper.html">Packages//MathHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../files/Packages//StringHelper.html">Packages//StringHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../files/Packages//TableHelper.html">Packages//TableHelper.lua</a>
+	</li>
+
+</ul>
+
+
+
+
+
+
+</div><!-- id="navigation" -->
+
+<div id="content">
+
+<h1>Module <code>BaseLua</code></h1>
+
+<p>BaseLua global configuration and convenience methods.</p>
+
+
+
+
+
+<h2>Functions</h2>
+<table class="function_list">
+
+    <tr>
+    <td class="name" nowrap><a href="#printf">printf</a>&nbsp;(format, ...)</td>
+    <td class="summary">Prints the provided parameters via 'print', formatted according to the specified format, following the formatting convention of 'string.format'.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#writef">writef</a>&nbsp;(format, ...)</td>
+    <td class="summary">Writes the provided parameters via 'io.write', formatted according to the specified format, following the formatting convention of 'string.format'.</td>
+    </tr>
+
+</table>
+
+
+
+
+<h2>Tables</h2>
+<table class="table_list">
+
+    <tr>
+    <td class="name" nowrap><a href="#BaseLua">BaseLua</a></td>
+    <td class="summary">BaseLua class fields.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#package">package</a></td>
+    <td class="summary">BaseLua package helper that facilitates working with BaseLua packages.</td>
+    </tr>
+
+</table>
+
+
+
+<br/>
+<br/>
+
+
+
+<h2><a name="functions"></a>Functions</h2>
+<dl class="function">
+
+
+
+<dt><a name="printf"></a><strong>printf</strong>&nbsp;(format, ...)</dt>
+<dd>
+Prints the provided parameters via 'print', formatted according to the specified format, following the formatting convention of 'string.format'. Automatically prints an end-of-line character following the string.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  format: The 'string.format' formatting convention to apply to the provided parameters.
+	</li>
+	
+	<li>
+	  ...: Optional parameters to format according to the specified format.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+printf( "Hello, %s!", "world" )
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="writef"></a><strong>writef</strong>&nbsp;(format, ...)</dt>
+<dd>
+Writes the provided parameters via 'io.write', formatted according to the specified format, following the formatting convention of 'string.format'. Does not automatically print an end-of-line character following the string.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  format: The 'string.format' formatting convention to apply to the provided parameters.
+	</li>
+	
+	<li>
+	  ...: Optional parameters to format according to the specified format.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage:</h3>
+writef( "Hello, %s!", "world" )
+
+
+
+
+
+</dd>
+
+
+</dl>
+
+
+
+
+<h2><a name="tables"></a>Tables</h2>
+<dl class="table">
+
+<dt><a name="BaseLua"></a><strong>BaseLua</strong></dt>
+<dd>BaseLua class fields.
+
+
+<h3>Fields</h3>
+<ul>
+	
+	<li>
+	  PACKAGE_PATH_SEPARATOR: Indicates the character that separates Lua nested package paths that appear in invocations to the Lua "require" function.  Statically assigned the value "."
+	</li>
+	
+	<li>
+	  PACKAGE_NAME_PATTERN: The Lua pattern that can be used to identify the package name in nested package paths that appear in invocations to the Lua "require" function.
+	</li>
+	
+	<li>
+	  PACKAGE_PATH_PATTERN: The Lua pattern that can be used to identify the leading paths in nested package paths that appear in invocations to the Lua "require" function.
+	</li>
+	
+</ul>
+
+
+</dd>
+
+
+<dt><a name="package"></a><strong>package</strong></dt>
+<dd>BaseLua package helper that facilitates working with BaseLua packages.
+
+
+<h3>Fields</h3>
+<ul>
+	
+	<li>
+	  name: The package name for this BaseLua class.  Usually should be 'BaseLua', unless the file name of this class has been changed.
+	</li>
+	
+	<li>
+	  path: The package path for all BaseLua classes.
+	</li>
+	
+	<li>
+	  PACKAGE_NAME: An invocation of package that contains a child index other than "name" or "path" will return the child index appended to the package path.  Replace "PACKAGE_NAME" with the name of the package to return. @Usage: BaseLua.package.BaseClass -- Classes.BaseClass
+	</li>
+	
+</ul>
+
+
+</dd>
+
+
+</dl>
+
+
+
+</div> <!-- id="content" -->
+
+</div> <!-- id="main" -->
+
+<div id="about">
+    <p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" /></a></p>
+</div> <!-- id="about" -->
+
+</div> <!-- id="container" -->
+</body>
+</html>

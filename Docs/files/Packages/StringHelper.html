@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <title>Luadocs for Packages//StringHelper.lua</title>
+    <link rel="stylesheet" href="../../../luadoc.css" type="text/css" />
+    <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/-->
+</head>
+
+<body>
+<div id="container">
+
+<div id="product">
+    <div id="product_logo"></div>
+    <div id="product_name"><big><b></b></big></div>
+    <div id="product_description"></div>
+</div> <!-- id="product" -->
+
+<div id="main">
+
+<div id="navigation">
+
+
+<h1>LuaDoc</h1>
+<ul>
+	
+	<li><a href="../../../index.html">Index</a></li>
+	
+</ul>
+
+
+<!-- Module list -->
+
+<h1>Modules</h1>
+<ul>
+
+	<li>
+		<a href="../../../modules/BaseConfig.html">BaseConfig</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/BaseLua.html">BaseLua</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/ClassHelper.html">ClassHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/DataHelper.html">DataHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/FileHelper.html">FileHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/FunctionHelper.html">FunctionHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/MathHelper.html">MathHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/StringHelper.html">StringHelper</a>
+	</li>
+
+	<li>
+		<a href="../../../modules/TableHelper.html">TableHelper</a>
+	</li>
+
+</ul>
+
+
+
+<!-- File list -->
+
+<h1>Files</h1>
+<ul>
+
+	<li>
+		<a href="../../../files/Packages//BaseClass.html">Packages//BaseClass.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//BaseConfig.html">Packages//BaseConfig.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//BaseLua.html">Packages//BaseLua.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//ClassHelper.html">Packages//ClassHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//DataHelper.html">Packages//DataHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//FileHelper.html">Packages//FileHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//FunctionHelper.html">Packages//FunctionHelper.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/Packages//MathHelper.html">Packages//MathHelper.lua</a>
+	</li>
+
+	<li><strong>Packages//StringHelper.lua</strong></li>
+	
+	<li>
+		<a href="../../../files/Packages//TableHelper.html">Packages//TableHelper.lua</a>
+	</li>
+
+</ul>
+
+
+
+
+
+
+</div> <!-- id="navigation" -->
+
+<div id="content">
+
+<h1>File <code>Packages//StringHelper.lua</code></h1>
+
+
+<p>Convenience functions for performing string manipulation.</p>
+
+
+
+
+
+
+<h2>Functions</h2>
+<table class="function_list">
+
+    <tr>
+    <td class="name" nowrap><a href="#compareString">compareString</a>&nbsp;(target, compareTo, ignoreCase)</td>
+    <td class="summary">Indicates whether two strings are identical, optionally ignoring case and safely handling nil values.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#endsWith">endsWith</a>&nbsp;(target, suffix, ignoreCase)</td>
+    <td class="summary">Indicates whether the specified target string ends with the specified suffix string, optionally ignoring case and safely handling nil values.</td>
+    </tr>
+
+    <tr>
+    <td class="name" nowrap><a href="#startsWith">startsWith</a>&nbsp;(target, prefix, ignoreCase)</td>
+    <td class="summary">Indicates whether the specified target string starts with the specified prefix string, optionally ignoring case and safely handling nil values.</td>
+    </tr>
+
+</table>
+
+
+
+
+
+
+<br/>
+<br/>
+
+
+
+
+<h2><a name="functions"></a>Functions</h2>
+<dl class="function">
+
+
+
+<dt><a name="compareString"></a><strong>compareString</strong>&nbsp;(target, compareTo, ignoreCase)</dt>
+<dd>
+Indicates whether two strings are identical, optionally ignoring case and safely handling nil values.  If either object is not nil and is not a string, returns false.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  target: The first string to compare.
+	</li>
+	
+	<li>
+	  compareTo: The second string to compare.
+	</li>
+	
+	<li>
+	  ignoreCase: Determines whether case is ignored during comparison.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage</h3>
+<ul>
+	
+	<li>compareString( nil, nil ) -- true
+	
+	<li>compareString( "Hi", "hi" ) -- false
+	
+	<li>compareString( "Hi", "hi", true ) -- true
+	
+	<li>s = {}; compareString( s, s ) -- false
+	
+</ul>
+
+
+
+<h3>Return value:</h3>
+True if both strings are nil or are equal; false otherwise.
+
+
+
+</dd>
+
+
+
+
+<dt><a name="endsWith"></a><strong>endsWith</strong>&nbsp;(target, suffix, ignoreCase)</dt>
+<dd>
+Indicates whether the specified target string ends with the specified suffix string, optionally ignoring case and safely handling nil values.  If either object is not nil and is not a string, returns false.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  target: The target string to be examined for whether it ends with the specified suffix string.
+	</li>
+	
+	<li>
+	  suffix: The string to be looked for at the end of the target string.
+	</li>
+	
+	<li>
+	  ignoreCase: Determines whether case is ignored during evaluation.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage</h3>
+<ul>
+	
+	<li>endsWith( nil, nil ) -- true
+	
+	<li>endsWith( "Hi there", "Here" ) -- false
+	
+	<li>endsWith( "Hi there", "Here", true ) -- true
+	
+	<li>endsWith( "Hi there", "" ) -- true
+	
+	<li>s = "a"; endsWith( s, s ) -- true
+	
+	<li>s = {}; endsWith( s, s ) -- false
+	
+</ul>
+
+
+
+<h3>Return value:</h3>
+True if both strings are nil, or if the specified target string ends with the specified suffix string, or if the specified suffix string is an empty string; false otherwise.
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../../../files/Packages//StringHelper.html#startsWith">
+		startsWith
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="startsWith"></a><strong>startsWith</strong>&nbsp;(target, prefix, ignoreCase)</dt>
+<dd>
+Indicates whether the specified target string starts with the specified prefix string, optionally ignoring case and safely handling nil values.  If either object is not nil and is not a string, returns false.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  target: The target string to be examined for whether it starts with the specified suffix string.
+	</li>
+	
+	<li>
+	  prefix: The string to be looked for at the start of the target string.
+	</li>
+	
+	<li>
+	  ignoreCase: Determines whether case is ignored during evaluation.
+	</li>
+	
+</ul>
+
+
+
+
+<h3>Usage</h3>
+<ul>
+	
+	<li>startsWith( nil, nil ) -- true
+	
+	<li>startsWith( "Hi there", "HI" ) -- false
+	
+	<li>startsWith( "Hi there", "HI", true ) -- true
+	
+	<li>startsWith( "Hi there", "" ) -- true
+	
+	<li>s = "a"; startsWith( s, s ) -- true
+	
+	<li>s = {}; startsWith( s, s ) -- false
+	
+</ul>
+
+
+
+<h3>Return value:</h3>
+True if both strings are nil, or if the specified target string starts with the specified prefix string, or if the specified prefix string is an empty string; false otherwise.
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../../../files/Packages//StringHelper.html#endsWith">
+		endsWith
+	</a>
+	
+</ul>
+
+</dd>
+
+
+</dl>
+
+
+
+
+
+
+
+</div> <!-- id="content" -->
+
+</div> <!-- id="main" -->
+
+<div id="about">
+    <p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" /></a></p>
+</div> <!-- id="about" -->
+
+</div> <!-- id="container" -->
+</body>
+</html>
