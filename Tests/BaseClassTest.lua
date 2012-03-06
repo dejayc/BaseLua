@@ -7,4 +7,4 @@
 
      http://www.apache.org/licenses/LICENSE-2.0 --]]
 
-local BaseLua = require( "Packages.BaseLua.BaseLua" )
+local BaseLua = require( "Packages.BaseLua" )
