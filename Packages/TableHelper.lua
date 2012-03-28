@@ -68,6 +68,33 @@ function CLASS.copy( sourceTable, copyTables, copyMetatables )
     return _copy( sourceTable )
 end
 
+--- Returns the specified named element of the specified table, traversing
+-- nested table elements as necessary.  If the specified table is nil, or
+-- lacks the specified named element, returns nil.
+-- @name getByIndex
+-- @param target The target table to search for the specified named element.
+-- @param ... A list of element names, with each name representing a step
+-- deeper into the hierarchy of nested table elements.
+-- @return The specified named element of the specified table, if available;
+-- otherwise, nil.
+-- @usage getByIndex( { hi = { bye = 9 } }, "hi", "bye" ) -- 9
+-- @usage getByIndex( { hi = { bye = 9 } }, "hi" ) -- { bye = 9 }
+-- @usage getByIndex( { hi = { bye = 9 } }, "hi", "there" ) -- nil
+-- @usage getByIndex( nil, "hi", "bye" ) -- nil
+-- @see getByIndex
+function CLASS.getByIndex( target, ... )
+    if ( type( target ) ~= "table" ) then return end
+
+    local objRef = target
+
+    for _, value in ipairs( arg ) do
+        objRef = objRef[ value ]
+        if ( objRef == nil ) then return end
+    end
+
+    return objRef
+end
+
 --- Returns a new table consisting of the sorted numeric key values of the
 -- specified table.  Useful for iterating through a mixed table that contains
 -- associative array entries in addition to traditional numeric array entries.
@@ -117,33 +144,6 @@ end
 -- @usage pack ( 1, nil, 2, 3 ) -- { 1, nil, 2, 3 }
 function CLASS.pack( ... )
     return arg
-end
-
---- Returns the specified named element of the specified table, traversing
--- nested table elements as necessary.  If the specified table is nil, or
--- lacks the specified named element, returns nil.
--- @name getByIndex
--- @param target The target table to search for the specified named element.
--- @param ... A list of element names, with each name representing a step
--- deeper into the hierarchy of nested table elements.
--- @return The specified named element of the specified table, if available;
--- otherwise, nil.
--- @usage getByIndex( { hi = { bye = 9 } }, "hi", "bye" ) -- 9
--- @usage getByIndex( { hi = { bye = 9 } }, "hi" ) -- { bye = 9 }
--- @usage getByIndex( { hi = { bye = 9 } }, "hi", "there" ) -- nil
--- @usage getByIndex( nil, "hi", "bye" ) -- nil
--- @see getByIndex
-function CLASS.getByIndex( target, ... )
-    if ( type( target ) ~= "table" ) then return end
-
-    local objRef = target
-
-    for _, value in ipairs( arg ) do
-        objRef = objRef[ value ]
-        if ( objRef == nil ) then return end
-    end
-
-    return objRef
 end
 
 --- Updates the specified named element of the specified table to the
