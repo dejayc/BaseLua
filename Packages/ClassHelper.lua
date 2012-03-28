@@ -20,6 +20,8 @@ local BaseLua = require( "BaseLua" )
 
 local CLASS = {}
 
+CLASS.CLASS_SEPARATOR = "."
+
 --- Invokes the 'extend' method of the 'BaseClass' class, effectively allowing
 -- a BaseLua subclass to be created with the specified name.
 -- @name autoclass
