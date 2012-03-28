@@ -12,6 +12,93 @@ local ClassHelper = require( BaseLua.package.ClassHelper )
 
 local CLASS = { className = ClassHelper.getPackagePath( ... ) }
 
+local function findMetamethod( target, index, ignoreFn )
+    local toInvoke
+
+    -- First, check the class instance properties for the specified
+    -- metamethod, which will not propagate to super classes.
+    local class = TableHelper.selectByNestedIndex(
+        target, "class", "instanceProperties" )
+
+    if ( class ~= nil) then
+        toInvoke = rawget( class, index )
+        if ( toInvoke ~= nil and toInvoke ~= ignoreFn ) then
+            return toInvoke
+        end
+    end
+
+    -- Next, check the class raw table properties for the specified
+    -- metamethod, which will not propagate to super classes.
+    toInvoke = rawget( target, index )
+    if ( toInvoke ~= nil and toInvoke ~= ignoreFn ) then
+        return toInvoke
+    end
+
+    -- Next, check the class metatable properties for the specified
+    -- metamethod, which will not propagate to super classes.
+    local metatable = getmetatable( target )
+
+    if ( metatable ~= target and metatable ~= nil ) then
+        toInvoke = rawget( metatable, index )
+        if ( toInvoke ~= nil and toInvoke ~= ignoreFn ) then
+            return toInvoke
+        end
+    end
+
+    -- Next, check the class table properties for the specified metamethod,
+    -- which MAY propagate to super classes, depending on how "__index" is
+    -- defined for this table.  Only do this for metamethod lookups which are
+    -- not "__index", as that would lead to infinite recursion.
+    if ( metatable == nil or metatable.__index ~= ignoreFn ) then
+        toInvoke = target[ index ]
+        if ( toInvoke ~= nil and toInvoke ~= ignoreFn ) then
+            return toInvoke
+        end
+    end
+
+    -- Next, check the metatable table properties for the specified
+    -- metamethod, which MAY propagate to super classes, depending on whether
+    -- the metatable has its own metatable defined with an "__index"
+    -- metamethod.
+    if ( metatable ~= target and metatable ~= nil ) then
+        toInvoke = metatable[ index ]
+        if ( toInvoke ~= nil and toInvoke ~= ignoreFn ) then
+            return toInvoke
+        end
+    end
+end
+
+local function createMetamethodLookup( target, metamethodName )
+    return function( ... )
+        local metatable = getmetatable( target ) or {}
+        local ignoreFn = metatable[ metamethodName ]
+
+        -- First, check the current table for the specified metamethod.
+        local toInvoke = findMetamethod( target, metamethodName, ignoreFn )
+        if ( toInvoke ~= nil ) then return toInvoke( ... ) end
+
+        -- Next, check the super class for the specified metamethod.
+        local super = TableHelper.selectByNestedIndex(
+            target, "class", "super" )
+
+        if ( super ~= nil) then
+            toInvoke = findMetamethod( super, metamethodName, ignoreFn )
+            if ( toInvoke ~= nil ) then return toInvoke ( ... ) end
+        end
+    end
+end
+
+local function initializeMetamethods( target )
+    local metatable = getmetatable( target ) or {}
+
+    for _, metamethodName in ipairs( metamethodNames )
+    do
+        metatable[ metamethodName ] =
+            createMetamethodLookup( target, metamethodName )
+    end
+    return metatable
+end
+
 function CLASS:cast( object )
     object = object or {}
     setmetatable( object, getmetatable( self.class ))
