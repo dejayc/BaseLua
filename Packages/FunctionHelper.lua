@@ -58,7 +58,7 @@ function CLASS.memoize( fn, fnIndex )
                 return unpack( values )
             end
 
-            return nil
+            return
         end,
         __forget = function( self ) self.__memoized = {} end,
         __memoized = {},
