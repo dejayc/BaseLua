@@ -154,7 +154,7 @@ function CLASS.getRequirePath( filePath )
     if ( filePath == nil or filePath == "" or
          filePath == CLASS.PATH_SEPARATOR )
     then
-        return nil
+        return
     end
 
     return string.gsub(
