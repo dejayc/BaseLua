@@ -54,9 +54,9 @@ end
 -- @see getDefaultValue
 -- @see setDefaultValue
 -- @see setValue
--- @see TableHelper.selectByNestedIndex
+-- @see TableHelper.getByIndex
 function CLASS:getValue( useDefault, ... )
-    local value = TableHelper.selectByNestedIndex( self.values, ... )
+    local value = TableHelper.getByIndex( self.values, ... )
 
     if ( value == nil and ( useDefault or useDefault == nil ) ) then
         value = self:getDefaultValue( ... )
@@ -79,9 +79,9 @@ end
 --   -- { tests = { control = { flag = 4 } } }
 -- @see getDefaultValue
 -- @see setValue
--- @see TableHelper.updateByNestedIndex
+-- @see TableHelper.setByIndex
 function CLASS:setValue( value, ... )
-    TableHelper.updateByNestedIndex( value, self.values, ... )
+    TableHelper.setByIndex( value, self.values, ... )
 end
 
 --- Indicates whether the specified configuration setting exists and has a
@@ -115,9 +115,9 @@ end
 -- @usage getDefaultValue( "status" ) -- "pass"
 -- @see getValue
 -- @see setValue
--- @see TableHelper.selectByNestedIndex
+-- @see TableHelper.getByIndex
 function CLASS:getDefaultValue( ... )
-    return TableHelper.selectByNestedIndex( self.defaultValues, ... )
+    return TableHelper.getByIndex( self.defaultValues, ... )
 end
 
 return CLASS

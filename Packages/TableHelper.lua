@@ -122,27 +122,25 @@ end
 --- Returns the specified named element of the specified table, traversing
 -- nested table elements as necessary.  If the specified table is nil, or
 -- lacks the specified named element, returns nil.
--- @name selectByNestedIndex
+-- @name getByIndex
 -- @param target The target table to search for the specified named element.
 -- @param ... A list of element names, with each name representing a step
 -- deeper into the hierarchy of nested table elements.
 -- @return The specified named element of the specified table, if available;
 -- otherwise, nil.
--- @usage selectByNestedIndex( { hi = { bye = 9 } }, "hi", "bye" ) -- 9
--- @usage selectByNestedIndex(
---   { hi = { bye = 9 } }, "hi" ) -- { bye = 9 }
--- @usage selectByNestedIndex(
---   { hi = { bye = 9 } }, "hi", "there" ) -- nil
--- @usage selectByNestedIndex( nil, "hi", "bye" ) -- nil
--- @see updateByNestedIndex
-function CLASS.selectByNestedIndex( target, ... )
-    if ( target == nil ) then return nil end
+-- @usage getByIndex( { hi = { bye = 9 } }, "hi", "bye" ) -- 9
+-- @usage getByIndex( { hi = { bye = 9 } }, "hi" ) -- { bye = 9 }
+-- @usage getByIndex( { hi = { bye = 9 } }, "hi", "there" ) -- nil
+-- @usage getByIndex( nil, "hi", "bye" ) -- nil
+-- @see getByIndex
+function CLASS.getByIndex( target, ... )
+    if ( type( target ) ~= "table" ) then return end
 
     local objRef = target
 
-    for index, value in ipairs( arg ) do
+    for _, value in ipairs( arg ) do
         objRef = objRef[ value ]
-        if ( objRef == nil ) then return nil end
+        if ( objRef == nil ) then return end
     end
 
     return objRef
@@ -151,28 +149,29 @@ end
 --- Updates the specified named element of the specified table to the
 -- specified value and returns it, traversing and creating nested table
 -- elements as necessary.  If the specified table is nil, returns nil.
--- @name updateByNestedIndex
+-- @name setByIndex
 -- @param value The value to which to set the specified named element in the
 -- specified table.
 -- @param target The target table to search for the specified named element.
 -- @param ... A list of element names, with each name representing a step
 -- deeper into the hierarchy of nested table elements.
--- @return The specified named element of the specified table, if the table is
--- not nil; otherwise, nil.
--- @usage updateByNestedIndex(
---   9, { hi = { bye = 0 } }, "hi", "bye" ) -- { bye = 9 }
--- @usage updateByNestedIndex(
---   9, { hi = { } }, "hi", "bye" ) -- { hi = { bye = 9 } }
--- @usage updateByNestedIndex(
---   { bye = 9}, { hi = { } }, "hi" ) -- { hi = { bye = 9 } }
--- @usage updateByNestedIndex( 9, { hi = { } } ) --  { hi = { } }
--- @usage updateByNestedIndex( 9, nil, "hi", "bye" ) -- nil
--- @see selectByNestedIndex
-function CLASS.updateByNestedIndex( value, target, ... )
-    if ( target == nil ) then return nil end
+-- @return The specified value, if the specified table is not nil and a named
+-- element has been specified; otherwise, nil.
+-- @usage setByIndex( 9, { hi = { bye = 0 } }, "hi", "bye" )
+--   -- 9; target = { hi = { bye = 9 } }
+-- @usage setByIndex( 9, { hi = { } }, "hi", "bye" )
+--   -- 9; target = { hi = { bye = 9 } }
+-- @usage setByIndex( { bye = 9}, { hi = { } }, "hi" )
+--   -- { bye = 9 }; target = { hi = { bye = 9 } }
+-- @usage setByIndex( 9, { hi = { } } ) -- nil; target = { hi = { } }
+-- @usage setByIndex( 9, nil, "hi", "bye" ) -- nil
+-- @see getByIndex
+function CLASS.setByIndex( value, target, ... )
+    if ( target == nil ) then return end
 
     local objRef = target
     local pathDepth = table.getn( arg )
+    if ( pathDepth < 1 ) then return end
 
     for index, indexName in ipairs( arg ) do
         if ( index == pathDepth ) then
@@ -185,7 +184,7 @@ function CLASS.updateByNestedIndex( value, target, ... )
         objRef = objRef[ indexName ]
     end
 
-    return objRef
+    return value
 end
 
 return CLASS
