@@ -68,6 +68,61 @@ function CLASS.copy( sourceTable, copyTables, copyMetatables )
     return _copy( sourceTable )
 end
 
+local function onReadProxyTableError(
+    target, propertyName, value, errorCallStackDepth
+)
+    error(
+        "Attempt to set index '" .. tostring( propertyName ) ..
+        "' with value '" .. tostring( value ) ..
+        "' on read-only table '" .. tostring( target ) .. "'",
+        errorCallStackDepth or 3 )
+end
+
+function CLASS.createReadProxyTable(
+    target, onReadAccess, errorCallStackDepth
+)
+    errorCallStackDepth = errorCallStackDepth or 2
+
+    local onReadAccessType = type( onReadAccess )
+    if ( onReadAccessType == "string" ) then
+        local errMsg = onReadAccess
+        onReadAccess = function()
+            error( errMsg, errorCallStackDepth )
+        end
+    elseif ( onReadAccessType == "boolean" ) then
+        if ( onReadAccess ) then
+            onReadAccess = function( target, propertyName, value )
+                onReadProxyTableError(
+                    target, propertyName, value, errorCallStackDepth + 1 )
+            end
+        else
+            onReadAccess = function() end
+        end
+    elseif ( onReadAccessType == "nil" ) then
+        onReadAccess = function( target, propertyName, value )
+            onReadProxyTableError(
+                target, propertyName, value, errorCallStackDepth + 1 )
+        end
+    elseif ( onReadAccessType == "number" ) then
+        errorCallStackDepth = onReadAccess
+        onReadAccess = function( target, propertyName, value )
+            onReadProxyTableError(
+                target, propertyName, value, errorCallStackDepth + 1 )
+        end
+    elseif ( onReadAccessType == "thread" ) then
+        local onReadAccessFn = onReadAccess
+        onReadAccess = function( target, propertyName, value )
+            coroutine.resume( onReadAccessFn, target, propertyName, value )
+        end
+    end
+
+    return setmetatable( { }, {
+        __index = target,
+        __mode = "k",
+        __newindex = onReadAccess,
+    } )
+end
+
 --- Returns the specified named element of the specified table, traversing
 -- nested table elements as necessary.  If the specified table is nil, or
 -- lacks the specified named element, returns nil.
