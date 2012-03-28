@@ -187,4 +187,53 @@ function CLASS.setByIndex( value, target, ... )
     return value
 end
 
+--- Updates the specified named element of the specified table to the
+-- specified value and returns it, if it doesn't exist, traversing and creating
+-- nested table elements as necessary.  If the specified named element does
+-- exist, returns the existing value.  If the specified table is nil, returns
+-- nil.
+-- @name setDefaultByIndex
+-- @param value The value to which to set the specified named element in the
+-- specified table, if it doesn't exist.
+-- @param target The target table to search for the specified named element.
+-- @param ... A list of element names, with each name representing a step
+-- deeper into the hierarchy of nested table elements.
+-- @return The specified value, if the specified table is not nil and a named
+-- element has been specified and the named element does not exist; or, the
+-- existing value of the specified named element, if it exists; otherwise, nil.
+-- @return True if the specified named element in the specified table already
+-- exists and has a value; otherwise, false.
+-- @usage setDefaultByIndex( 9, { hi = { bye = 0 } }, "hi", "bye" )
+--   -- 0; target = { hi = { bye = 0 } }
+-- @usage setDefaultByIndex( 9, { hi = { } }, "hi", "bye" )
+--   -- 9; target = { hi = { bye = 9 } }
+-- @usage setDefaultByIndex( { bye = 9}, { hi = { } }, "hi" )
+--   -- { }; target = { hi = { } }
+-- @usage setDefaultByIndex( 9, { hi = { } } ) -- nil; target = { hi = { } }
+-- @usage setDefaultByIndex( 9, nil, "hi", "bye" ) -- nil
+-- @see getByIndex
+-- @see setByIndex
+function CLASS.setDefaultByIndex( value, target, ... )
+    if ( target == nil ) then return nil, false end
+
+    local objRef = target
+    local pathDepth = table.getn( arg )
+    if ( pathDepth < 1 ) then return nil, false end
+
+    for index, indexName in ipairs( arg ) do
+        if ( index == pathDepth ) then
+            local existingValue = objRef[ indexName ]
+            if ( existingValue ) then return existingValue, true end
+            objRef[ indexName ] = value
+            break
+        end
+        if ( objRef[ indexName ] == nil ) then
+            objRef[ indexName ] = {}
+        end
+        objRef = objRef[ indexName ]
+    end
+
+    return value, false
+end
+
 return CLASS
